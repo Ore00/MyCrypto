@@ -60,6 +60,6 @@
     </div>    
        
     </body>
-    <script src="js/jquery.js"></script>
+    <script src="vendor/jquery.js"></script>
     <script src="js/main.js"></script>
 </html>
