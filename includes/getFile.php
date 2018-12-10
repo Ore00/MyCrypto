@@ -31,6 +31,8 @@ if($_POST) {
    $fileName = $_FILES['userFile']['name'];
    $fileSize = $_FILES['userFile']['size'];
    $fileError = $_FILES['userFile']['error'];
+   $fileErrorMsg = array( 0 => 'No error', 1 => 'Upload file exceeds the upload_max_file_size in php.ini', 2 =>'The upload file exceeds the MAX_FILE_SIZE specified in the HTML form', 3 => 'The uploaded file was partially uploaded', 4 => 'No file was loaded', 5 => 'Error not specified', 6 =>'Missing a temporary folder', 7 => 'Failed to write file to disk', 8 => 'A PHP extension stopped the file upload.');
+   
    //Declaring globals
     $assocPairs = getASCII_to_cipher_Position($KeyLength); 
     // put the user key to associate with the original [A-Z]chars and [0-9] when key leghth is greater than 26
@@ -60,7 +62,7 @@ if($_POST) {
             createFile($newFile, $convertedData);
            // downloadFile($newFile);   
      }else{
-             $error = "Error : The system genearated error code " . $fileError . ". The file " . $fileName . " wasn't loaded.";
+             $error = "Error : The system genearated error: " . $fileErrorMsg[$fileError] . ". The file " . $fileName . " wasn't loaded.";
      } 
     //print values 
     echo json_encode([

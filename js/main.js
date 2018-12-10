@@ -44,7 +44,7 @@ $(document).ready(function() {
             return;
        }
        
-       if(currentFile == ""){
+       if(currentFile === ""){
         var err = "Select a text file to begin."; 
         $("#form_status").addClass("alert");
         document.getElementById("form_status").innerHTML = "<br>" + err + "<br>";        
@@ -98,7 +98,7 @@ $(document).ready(function() {
             }).fail(function(jqXHR, textStatus){                     
                        $("#btnCrypto").attr('disable',false);
                         $("#form_status").addClass("alert");
-                        var err = textStatus;                        
+                        var err = jqXHR.statusText;                        
                         document.getElementById("form_status").innerHTML = "<br>Error: " + err + "<br>";
             }).always(function(){   
                        $('#form_status')[0].scrollIntoView(); 
