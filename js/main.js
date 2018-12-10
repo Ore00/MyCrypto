@@ -27,6 +27,7 @@ $(document).ready(function() {
        var currentKey =  document.getElementById("userKey").value;
        if(currentKey == ""){
           var err = "Enter a key.";
+           $("#form_status").removeClass();
           $("#form_status").addClass("alert");
           document.getElementById("form_status").innerHTML = "<br>" + err + "<br>";
           return;
@@ -40,6 +41,7 @@ $(document).ready(function() {
                 err = err + " The last 10 characters should include each digit 0 thru 9.";
                 err = err + "<br>Example: ZHIMNEYXWVUTSRQPOLKJGFDCBA9872106543";
               }
+               $("#form_status").removeClass();
             $("#form_status").addClass("alert");
             document.getElementById("form_status").innerHTML = "<br>" + err + "<br>";
             return;
@@ -93,7 +95,7 @@ $(document).ready(function() {
                               });
                          }else{    
                              $("#form_status").removeClass();
-                            $("#form_status").addClass("sucess");
+                            $("#form_status").addClass("success");
                              var download = "<br><a href='downloads/plain.txt' target='_blank'>Download</a>";
                              document.getElementById("form_status").innerHTML = download;
                         }    
@@ -101,16 +103,18 @@ $(document).ready(function() {
                
             }).fail(function(jqXHR, textStatus){                     
                        $("#btnCrypto").attr('disable',false);
+                        $("#form_status").removeClass();
                         $("#form_status").addClass("alert");
-                        var err = jqXHR.statusText;                        
+                        var err = textStatus + ": "+ jqXHR.statusText;                        
                         document.getElementById("form_status").innerHTML = "<br>Error: " + err + "<br>";
             }).always(function(){   
                        $('#form_status')[0].scrollIntoView(); 
  });
        }else{
              var err = "The file must be a text file";
-             document.getElementById("left").innerHTML = "<br>" + err + "<br>";
-             document.getElementById("right").innerHTML = "";
+             $("#form_status").removeClass();
+              $("#form_status").addClass("alert");
+              document.getElementById("form_status").innerHTML = "<br>Error: " + err + "<br>";
        }
    });   
   
