@@ -46,7 +46,9 @@
                 <input type="submit" id="btnCrypto" name="btnCrypto" value="Convert" class="btn" alt="Process input file">
                
             </form>
-           <div id="form_status" name="form_status" class="row"></div>    
+              
+               <div class="row"></div>
+               <div id="form_status" name="form_status" class="row"></div> 
         </div> 
          
       </div>     

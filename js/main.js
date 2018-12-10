@@ -18,9 +18,10 @@
 $(document).ready(function() {	
   $('#frmCrypto').submit(function(e){  
     e.preventDefault();
-    document.getElementById("form_status").innerHTML = "";
-    $("#form_status").removeClass("alert");
-       $("#btnCrypto").attr('disable',true); 
+    $("#form_status").removeClass();
+    $("#form_status").addClass("info");
+    document.getElementById("form_status").innerHTML = "Processing...";
+           $("#btnCrypto").attr('disable',true); 
        var dataReminder = new FormData(this);    
        var currentFile = document.getElementById("userFile").value;
        var currentKey =  document.getElementById("userKey").value;
@@ -45,9 +46,10 @@ $(document).ready(function() {
        }
        
        if(currentFile === ""){
-        var err = "Select a text file to begin."; 
+        var err = "<br>Select a text file to begin."; 
+        $("#form_status").removeClass();
         $("#form_status").addClass("alert");
-        document.getElementById("form_status").innerHTML = "<br>" + err + "<br>";        
+        document.getElementById("form_status").innerHTML =  err;        
         return;
        }
        //process form    
@@ -82,13 +84,15 @@ $(document).ready(function() {
                           }else{                             
                                document.getElementById("right").innerHTML = "<H3>Converted Text</H3><br>" + data.convData;
                           }
-                        
+                      
                     if(data.err !== ""){
+                         $("#form_status").removeClass();
                         $("#form_status").addClass("alert");
                               $('#form_status').fadeOut('slow', function(){
                                    $('#form_status').fadeIn('slow').html("<br>" + data.err + "<br>");
                               });
                          }else{    
+                             $("#form_status").removeClass();
                             $("#form_status").addClass("sucess");
                              var download = "<br><a href='downloads/plain.txt' target='_blank'>Download</a>";
                              document.getElementById("form_status").innerHTML = download;
